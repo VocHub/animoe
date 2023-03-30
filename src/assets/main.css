@@ -1,0 +1,172 @@
+@import './base.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    hr.rounded {
+        border-top: 1px solid #989898;
+        border-radius: 1px;
+        opacity: 0.4;
+    }
+
+    .vertical-line {
+        width: 1px;
+        background: #989898;
+        opacity: 0.5;
+    }
+}
+
+@layer utilities {
+    .fade-in {
+        animation: fade-in 120ms linear 1 forwards;
+    }
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    @keyframes gradient {
+        0% {
+            background-position: 0 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0 50%;
+        }
+    }
+
+    .glow {
+        @apply transition-colors duration-300 ease-in-out;
+        background-color: transparent;
+        box-shadow: 0 -8em 2000px 50px;
+        color: transparent;
+    }
+
+    .fade-out {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s 250ms, opacity 250ms linear;
+    }
+
+    .visible {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 100ms linear;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #b2b2b2;
+    border-radius: 0.5rem;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #919191;
+    border-radius: 0.5rem;
+}
+
+.rating {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: #ffffff;
+}
+
+.rating-border {
+    position: relative;
+    text-align: center;
+    width: 110px;
+    height: 110px;
+    margin-left: 30%;
+    border-radius: 100%;
+    background: #E53B3B linear-gradient(270deg, black 50%, transparent 50%) linear-gradient(0deg, black 50%, lightgray 50%);
+}
+
+[data-tooltip] {
+    position: relative;
+    display: inline-block;
+}
+[data-tooltip]:after,
+[data-tooltip]:before {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -5px);
+    z-index: 1000;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    opacity: 0;
+}
+[data-tooltip]:before {
+    content: attr(data-tooltip);
+    font-weight: normal;
+    font-size: 0.9rem;
+    background: #444;
+    color: #eee;
+    padding: 4px 9px;
+    white-space: nowrap;
+    bottom: 100%;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.65);
+}
+[data-tooltip]:active:after,
+[data-tooltip]:active:before,
+[data-tooltip]:focus:after,
+[data-tooltip]:focus:before,
+[data-tooltip]:hover:after,
+[data-tooltip]:hover:before {
+    opacity: 1;
+}
+[data-tooltip].tooltip-multiline:before {
+    width: 100vw;
+    max-width: 240px;
+    white-space: normal;
+}
+[data-tooltip][class*="tooltip-bottom"]:after,
+[data-tooltip][class*="tooltip-bottom"]:before {
+    transform: translate(-50%, 12px);
+}
+[data-tooltip][class*="tooltip-bottom"]:before {
+    bottom: auto;
+    top: 100%;
+}
+[data-tooltip][class*="tooltip-bottom"]:after {
+    bottom: 0;
+    border: 8px solid transparent;
+    border-bottom-color: #444;
+}
+[data-tooltip].tooltip-bottom-left:before {
+    transform: translate(-24px, 12px);
+}
+[data-tooltip].tooltip-bottom-right:before {
+    left: auto;
+    right: 50%;
+    transform: translate(24px, 12px);
+}
+[data-tooltip].tooltip-top-left:before {
+    transform: translate(-24px, -12px);
+}
+[data-tooltip].tooltip-top-right:before {
+    left: auto;
+    right: 50%;
+    transform: translate(24px, -12px);
+}
